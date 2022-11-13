@@ -65,7 +65,7 @@ function find_word_concatenation(str, words) {
       if (j + 1 === wordsCount) { // Store index if we have found all the words
         resultIndices.push(i);
       }
-    }
+    } 
   }
 
   return resultIndices;
