@@ -35,45 +35,45 @@ Output: true
 Explanation: The string contains "acb" which is a permutation of the given pattern.
 Try it yourself#
 Try solving this question here:*/
-const find_permutation = function(str, pattern) {
+const find_permutation = function (str, pattern) {
   // TODO: Write your code here
-  let start = 0, pattObj = {}, matched =0;
+  let start = 0,
+    pattObj = {},
+    matched = 0;
 
   //creating a map to check the elements in a pattern
-  for(let i =0; i< pattern.length; i++) {
-    if(pattObj[pattern[i]] === undefined) pattObj[pattern[i]] = 1;
-    else pattObj[pattern[i]]++
+  for (let i = 0; i < pattern.length; i++) {
+    if (pattObj[pattern[i]] === undefined) pattObj[pattern[i]] = 1;
+    else pattObj[pattern[i]]++;
   }
   // console.log('obj', pattObj)
   // decrement elements matched with the pattern as it matches pattern
   //and loop contiues to check elements with pattern
   //oidbcaf" pat - abc at index 3 'b' matches pattern so now {a:1, b:0, c:1} matched = 1
   //and loop continues to check
-    for(let j =0; j< str.length; j++) {
-      if(str[j] in pattObj) {
-        // console.log('char', pattObj[str[j]])
-        pattObj[str[j]]--;
-        if(pattObj[str[j]] === 0) matched++;
-      }
-      // console.log('match', matched)
+  for (let j = 0; j < str.length; j++) {
+    if (str[j] in pattObj) {
+      // console.log('char', pattObj[str[j]])
+      pattObj[str[j]]--;
+      if (pattObj[str[j]] === 0) matched++;
+    }
+    // console.log('match', matched)
 
-      if(matched === Object.keys(pattObj).length) return true;
-      // at this point if we didn't find the window which is anagram to pattern we will try to shrink
-      //the window by moving starting position, next if element in string is same as element in pattern
-      //check for value, if value is zero, it is said the element is matched so now the frequency will be
-      //incremented an matched will be decremented
-     if(j >= pattern.length-1) {
-
-      if(str[start] in pattObj) {
+    if (matched === Object.keys(pattObj).length) return true;
+    // at this point if we didn't find the window which is anagram to pattern we will try to shrink
+    //the window by moving starting position, next if element in string is same as element in pattern
+    //check for value, if value is zero, it is said the element is matched so now the frequency will be
+    //incremented an matched will be decremented
+    if (j >= pattern.length - 1) {
+      if (str[start] in pattObj) {
         // console.log('window', pattObj[str[start]])
-        if(pattObj[str[start]] === 0) matched--;
-        pattObj[str[start]]++
+        if (pattObj[str[start]] === 0) matched--;
+        pattObj[str[start]]++;
       }
       start++;
     }
-
   }
-   return false;
+  return false;
 };
 /*
 Solution#
@@ -129,7 +129,6 @@ function find_permutation(str, pattern) {
   }
   return false;
 }
-
 
 console.log(`Permutation exist: ${find_permutation('oidbcaf', 'abc')}`);
 console.log(`Permutation exist: ${find_permutation('odicf', 'dc')}`);

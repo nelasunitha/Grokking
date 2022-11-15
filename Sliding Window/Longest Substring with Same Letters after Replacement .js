@@ -18,19 +18,21 @@ Output: 3
 Explanation: Replace the 'b' or 'd' with 'c' to have the longest repeating substring "ccc".
 Try it yourself#
 Try solving this question here:*/
-const length_of_longest_substring = function(str, k) {
+const length_of_longest_substring = function (str, k) {
   // TODO: Write your code here
-  let start =0, maxCount = 0, maxLen =0, strObj = {};
-  for(let i =0; i < str.length; i++) {
-    if(strObj[str[i]] === undefined) strObj[str[i]] =1;
-    else strObj[str[i]]++
-    maxCount = strObj[str[i]]
-    if(i - start +1 - maxCount > k ) {
-      strObj[str[start]]--
-      start++
+  let start = 0,
+    maxCount = 0,
+    maxLen = 0,
+    strObj = {};
+  for (let i = 0; i < str.length; i++) {
+    if (strObj[str[i]] === undefined) strObj[str[i]] = 1;
+    else strObj[str[i]]++;
+    maxCount = strObj[str[i]];
+    if (i - start + 1 - maxCount > k) {
+      strObj[str[start]]--;
+      start++;
     }
-    maxLen = Math.max(maxLen, i- start +1)
-
+    maxLen = Math.max(maxLen, i - start + 1);
   }
   return maxLen;
 };
@@ -63,14 +65,17 @@ function length_of_longest_substring(str, k) {
 
     // we don't need to place the maxRepeatLetterCount under the below 'if', see the
     // explanation in the 'Solution' section above.
-    maxRepeatLetterCount = Math.max(maxRepeatLetterCount, frequencyMap[rightChar]);
+    maxRepeatLetterCount = Math.max(
+      maxRepeatLetterCount,
+      frequencyMap[rightChar]
+    );
 
     // Current window size is from windowStart to windowEnd, overall we have a letter which is
     // repeating 'maxRepeatLetterCount' times, this means we can have a window which has one letter
     // repeating 'maxRepeatLetterCount' times and the remaining letters we should replace.
     // if the remaining letters are more than 'k', it is the time to shrink the window as we
     // are not allowed to replace more than 'k' letters
-    if ((windowEnd - windowStart + 1 - maxRepeatLetterCount) > k) {
+    if (windowEnd - windowStart + 1 - maxRepeatLetterCount > k) {
       leftChar = str[windowStart];
       frequencyMap[leftChar] -= 1;
       windowStart += 1;
@@ -80,7 +85,6 @@ function length_of_longest_substring(str, k) {
   }
   return maxLength;
 }
-
 
 console.log(length_of_longest_substring('aabccbb', 2));
 console.log(length_of_longest_substring('abbcb', 1));

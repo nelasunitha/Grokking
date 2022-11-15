@@ -27,7 +27,7 @@ function find_word_concatenation(str, words) {
     return [];
   }
 
-  wordFrequency = {};
+  const wordFrequency = {};
 
   words.forEach((word) => {
     if (!(word in wordFrequency)) {
@@ -37,16 +37,17 @@ function find_word_concatenation(str, words) {
   });
 
   const resultIndices = [],
-    wordsCount = words.length;
-  wordLength = words[0].length;
+    wordsCount = words.length,
+    wordLength = words[0].length;
 
-  for (i = 0; i < (str.length - wordsCount * wordLength) + 1; i++) {
+  for (let i = 0; i < str.length - wordsCount * wordLength + 1; i++) {
     const wordsSeen = {};
-    for (j = 0; j < wordsCount; j++) {
-      next_word_index = i + j * wordLength;
+    for (let j = 0; j < wordsCount; j++) {
+      let next_word_index = i + j * wordLength;
       // Get the next word from the string
-      word = str.substring(next_word_index, next_word_index + wordLength);
-      if (!(word in wordFrequency)) { // Break if we don't need this word
+      let word = str.substring(next_word_index, next_word_index + wordLength);
+      if (!(word in wordFrequency)) {
+        // Break if we don't need this word
         break;
       }
 
@@ -56,21 +57,20 @@ function find_word_concatenation(str, words) {
       }
       wordsSeen[word] += 1;
 
-
       // no need to process further if the word has higher frequency than required
       if (wordsSeen[word] > (wordFrequency[word] || 0)) {
         break;
       }
 
-      if (j + 1 === wordsCount) { // Store index if we have found all the words
+      if (j + 1 === wordsCount) {
+        // Store index if we have found all the words
         resultIndices.push(i);
       }
-    } 
+    }
   }
 
   return resultIndices;
 }
-
 
 console.log(find_word_concatenation('catfoxcat', ['cat', 'fox']));
 console.log(find_word_concatenation('catcatfoxfox', ['cat', 'fox']));

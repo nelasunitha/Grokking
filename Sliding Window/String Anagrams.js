@@ -26,27 +26,29 @@ Output: [2, 3, 4]
 Explanation: The three anagrams of the pattern in the given string are "bca", "cab", and "abc".
 Try it yourself#
 Try solving this question here:*/
-const find_string_anagrams = function(str, pattern) {
- const result_indexes = [];
+const find_string_anagrams = function (str, pattern) {
+  const result_indexes = [];
   // TODO: Write your code here
-  let start = 0, pattObj = {}, matched =0;
-  for(let i =0; i< pattern.length; i++) {
-    if(pattObj[pattern[i]] === undefined) pattObj[pattern[i]] =1;
+  let start = 0,
+    pattObj = {},
+    matched = 0;
+  for (let i = 0; i < pattern.length; i++) {
+    if (pattObj[pattern[i]] === undefined) pattObj[pattern[i]] = 1;
     else pattObj[pattern[i]]++;
   }
-  for(let j =0; j< str.length; j++) {
-    if(str[j] in pattObj) {
+  for (let j = 0; j < str.length; j++) {
+    if (str[j] in pattObj) {
       pattObj[str[j]]--;
-      if(pattObj[str[j]] === 0) matched++
+      if (pattObj[str[j]] === 0) matched++;
     }
-    if(matched === Object.keys(pattObj).length) result_indexes.push(start);
+    if (matched === Object.keys(pattObj).length) result_indexes.push(start);
 
-    if(j >= pattern.length-1) {
-      if(str[start] in pattObj) {
-        if(pattObj[str[start]] === 0) matched--;
+    if (j >= pattern.length - 1) {
+      if (str[start] in pattObj) {
+        if (pattObj[str[start]] === 0) matched--;
         pattObj[str[start]]++;
       }
-      start++
+      start++;
     }
   }
   return result_indexes;
@@ -82,7 +84,8 @@ function find_string_anagrams(str, pattern) {
       }
     }
 
-    if (matched === Object.keys(charFrequency).length) { // have we found an anagram?
+    if (matched === Object.keys(charFrequency).length) {
+      // have we found an anagram?
       resultIndices.push(windowStart);
     }
 
@@ -101,7 +104,6 @@ function find_string_anagrams(str, pattern) {
 
   return resultIndices;
 }
-
 
 console.log(find_string_anagrams('ppqp', 'pq'));
 console.log(find_string_anagrams('abbcabc', 'abc'));

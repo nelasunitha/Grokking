@@ -59,7 +59,6 @@ function length_of_longest_substring(arr, k) {
       }
       windowStart += 1;
     }
-
     maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
   }
   return maxLength;

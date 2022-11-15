@@ -25,22 +25,24 @@ Output: 6
 Explanation: The longest substring with no more than '10' distinct characters is "cbbebi".
 Try it yourself#
 Try solving this question here: */
-const longest_substring_with_k_distinct = function(str, k) {//"araaci", K=2
+const longest_substring_with_k_distinct = function (str, k) {
+  //"araaci", K=2
   // TODO: Write your code here
-  let start = 0, longest = 0, strObj = {}
-    for(let i = 0; i < str.length; i++) {
-      if(strObj[str[i]] === undefined)  strObj[str[i]] =1;
-      else strObj[str[i]]++; // {a:3,r:1,c:1, i :1}
-      console.log('c', Object.keys(strObj))
-      while(Object.keys(strObj).length > k) {
-        strObj[str[start]]--
-        if(strObj[str[start]] === 0) delete strObj[str[start]];
-        start++
-      }
-      longest = Math.max(longest, i-start+1)
+  let start = 0,
+    longest = 0,
+    strObj = {};
+  for (let i = 0; i < str.length; i++) {
+    if (strObj[str[i]] === undefined) strObj[str[i]] = 1;
+    else strObj[str[i]]++; // {a:3,r:1,c:1, i :1}
+    console.log('c', Object.keys(strObj));
+    while (Object.keys(strObj).length > k) {
+      strObj[str[start]]--;
+      if (strObj[str[start]] === 0) delete strObj[str[start]];
+      start++;
+    }
+    longest = Math.max(longest, i - start + 1);
   }
   return longest;
-
 };
 /*
 Solution#
@@ -177,10 +179,24 @@ function longest_substring_with_k_distinct(str, k) {
   return maxLength;
 }
 
-
-console.log(`Length of the longest substring: ${longest_substring_with_k_distinct('araaci', 2)}`);
-console.log(`Length of the longest substring: ${longest_substring_with_k_distinct('araaci', 1)}`);
-console.log(`Length of the longest substring: ${longest_substring_with_k_distinct('cbbebi', 3)}`);
+console.log(
+  `Length of the longest substring: ${longest_substring_with_k_distinct(
+    'araaci',
+    2
+  )}`
+);
+console.log(
+  `Length of the longest substring: ${longest_substring_with_k_distinct(
+    'araaci',
+    1
+  )}`
+);
+console.log(
+  `Length of the longest substring: ${longest_substring_with_k_distinct(
+    'cbbebi',
+    3
+  )}`
+);
 /*
 Time Complexity#
 The above algorithm’s time complexity will be O(N)

@@ -21,18 +21,20 @@ Explanation: Smallest subarrays with a sum greater than or equal to ‘8’ are 
 
 Try it yourself#
 Try solving this question here:*/
-const smallest_subarray_sum = function(s, arr) {
+const smallest_subarray_sum = function (s, arr) {
   // TODO: Write your code here
-  let sum =0, minLen =Infinity, start =0;
-  for(let i = 0; i < arr.length; i++) {
-    sum+=arr[i];
-    if(sum >= s) {
-      minLen = Math.min(minLen, i-start+1);
-      sum-= arr[start];
+  let sum = 0,
+    minLen = Infinity,
+    start = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    if (sum >= s) {
+      minLen = Math.min(minLen, i - start + 1);
+      sum -= arr[start];
       start++;
     }
   }
-  if(minLen === Infinity) return 0
+  if (minLen === Infinity) return 0;
   else return minLen;
 };
 
@@ -154,10 +156,10 @@ function smallest_subarray_sum(s, arr) {
     // shrink the window as small as possible until the 'window_sum' is smaller than 's'
     while (windowSum >= s) {
       minLength = Math.min(minLength, windowEnd - windowStart + 1);
-      windowSum -= arr[windowStart]
-      windowStart += 1 // sliding the window
-      }
+      windowSum -= arr[windowStart];
+      windowStart += 1; // sliding the window
     }
+  }
 
   if (minLength === Infinity) {
     return 0;
@@ -165,10 +167,15 @@ function smallest_subarray_sum(s, arr) {
   return minLength;
 }
 
-
-console.log(`Smallest subarray length: ${smallest_subarray_sum(7, [2, 1, 5, 2, 3, 2])}`);
-console.log(`Smallest subarray length: ${smallest_subarray_sum(8, [3, 4, 1, 1, 6])}`);
-console.log(`Smallest subarray length: ${smallest_subarray_sum(7, [2, 1, 5, 2, 3, 2])}`);
+console.log(
+  `Smallest subarray length: ${smallest_subarray_sum(7, [2, 1, 5, 2, 3, 2])}`
+);
+console.log(
+  `Smallest subarray length: ${smallest_subarray_sum(8, [3, 4, 1, 1, 6])}`
+);
+console.log(
+  `Smallest subarray length: ${smallest_subarray_sum(7, [2, 1, 5, 2, 3, 2])}`
+);
 /*
 Time Complexity#
 The time complexity of the above algorithm will be O(N).

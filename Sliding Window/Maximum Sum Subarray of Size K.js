@@ -26,8 +26,6 @@ const max_sub_array_of_size_k = function(k, arr) {
   return maxSum;
 };
 
-
-
 /*Solution#
 A basic brute force solution will be to calculate the sum of all ‘k’ sized subarrays of the given array to find the subarray with the highest sum. We can start from every index of the given array and add the next ‘k’ elements to find the subarray’s sum. Following is the visual representation of this algorithm for Example-1:
 
