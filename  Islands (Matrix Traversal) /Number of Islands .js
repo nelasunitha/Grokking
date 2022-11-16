@@ -270,10 +270,12 @@ function numberOfIslands(matrix) {
       matrix[i][j+1] =  number;
       visitIsland(matrix, i, j+1, number)
     }
+
     if(matrix[i-1] !== undefined && matrix[i-1][j] == 1) {
       matrix[i-1][j] =  number;
       visitIsland(matrix, i-1, j, number)
     }
+
     if(matrix[i+1] !== undefined && matrix[i+1][j] == 1) {
       matrix[i+1][j] =  number;
       visitIsland(matrix, i+1, j, number)
@@ -294,3 +296,4 @@ function numberOfIslands(matrix) {
     ["0","0","1","0","0"],
     ["0","0","0","1","1"]
   ]))
+//matrix[i][j]
