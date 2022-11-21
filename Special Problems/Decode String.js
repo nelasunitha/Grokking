@@ -43,6 +43,6 @@ function decodeString(str) {
   }
   return stack.join('');
 }
-console.log(decodeString("3[a]2[bc]"));
-console.log(decodeString("3[a2[c]]"));
-console.log(decodeString("2[abc]3[cd]ef"));
+console.log(decodeString('3[a]2[bc]'));
+console.log(decodeString('3[a2[c]]'));
+console.log(decodeString('2[abc]3[cd]ef'));
