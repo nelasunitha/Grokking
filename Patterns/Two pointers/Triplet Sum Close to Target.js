@@ -19,27 +19,28 @@ Output: 3
 Explanation: The triplet [1, 1, 1] has the closest sum to the target.
 Try it yourself#
 Try solving this question here:*/
-const triplet_sum_close_to_target = function(arr, target) {
+const triplet_sum_close_to_target = function (arr, target) {
   // TODO: Write your code here
-  arr.sort((a,b) => a-b)
+  arr.sort((a, b) => a - b);
   let leastDiff = Infinity;
-  for(let i =0; i < arr.length-2; i++) {
-    let left = i+1;
-    let right = arr.length -1;
-    while( left < right) {
-      let targetDiff  = target -(arr[i] + arr[left]+arr[right]);
-      if(targetDiff === 0) return target;
+  for (let i = 0; i < arr.length - 2; i++) {
+    let left = i + 1;
+    let right = arr.length - 1;
+    while (left < right) {
+      let targetDiff = target - (arr[i] + arr[left] + arr[right]);
+      if (targetDiff === 0) return target;
 
-      if(Math.abs(targetDiff) < Math.abs(leastDiff) || Math.abs(targetDiff) === Math.abs(leastDiff) &&
-        targetDiff  > leastDiff) leastDiff = targetDiff
+      if (
+        Math.abs(targetDiff) < Math.abs(leastDiff) ||
+        (Math.abs(targetDiff) === Math.abs(leastDiff) && targetDiff > leastDiff)
+      )
+        leastDiff = targetDiff;
 
-      if(targetDiff > 0) left++;
-      else right--
-
+      if (targetDiff > 0) left++;
+      else right--;
     }
-
   }
-  return target -leastDiff ;
+  return target - leastDiff;
 };
 
 /*Solution#
@@ -58,13 +59,17 @@ function triplet_sum_close_to_target(arr, targetSum) {
       right = arr.length - 1;
     while (left < right) {
       const target_diff = targetSum - arr[i] - arr[left] - arr[right];
-      if (target_diff === 0) { // we've found a triplet with an exact sum
+      if (target_diff === 0) {
+        // we've found a triplet with an exact sum
         return targetSum; // return sum of all the numbers
       }
 
       // the second part of the following 'if' is to handle the smallest sum when we have more than one solution
-      if (Math.abs(target_diff) <  Math.abs(smallest_difference) ||
-        (Math.abs(target_diff) === Math.abs(smallest_difference) && target_diff > smallest_difference)) {
+      if (
+        Math.abs(target_diff) < Math.abs(smallest_difference) ||
+        (Math.abs(target_diff) === Math.abs(smallest_difference) &&
+          target_diff > smallest_difference)
+      ) {
         smallest_difference = target_diff; // save the closest and the biggest difference
       }
       if (target_diff > 0) {
@@ -76,7 +81,6 @@ function triplet_sum_close_to_target(arr, targetSum) {
   }
   return targetSum - smallest_difference;
 }
-
 
 console.log(triplet_sum_close_to_target([-2, 0, 1, 2], 2));
 console.log(triplet_sum_close_to_target([-3, -1, 1, 2], 1));
