@@ -22,23 +22,26 @@ Try solving this question here:*/
 const triplet_sum_close_to_target = function(arr, target) {
   // TODO: Write your code here
   arr.sort((a,b) => a-b)
-  let leastDiff = arr[0] +arr[1] + arr[2];
-  for(let i =0; i < arr.length; i++) {
+  let leastDiff = Infinity;
+  for(let i =0; i < arr.length-2; i++) {
     let left = i+1;
     let right = arr.length -1;
     while( left < right) {
-      let sum  = arr[i] + arr[left]+arr[right];
-      if(sum > target) right--;
-      else left++
-      // if(targetDiff === 0) return target_sum;
-      if(Math.abs(target - sum) < Math.abs(target - leastDiff)) leastDiff = sum;
-      // if(targetDiff > 0) left++;
-      // else right--;
+      let targetDiff  = target -(arr[i] + arr[left]+arr[right]);
+      if(targetDiff === 0) return target;
+
+      if(Math.abs(targetDiff) < Math.abs(leastDiff) || Math.abs(targetDiff) === Math.abs(leastDiff) &&
+        targetDiff  > leastDiff) leastDiff = targetDiff
+
+      if(targetDiff > 0) left++;
+      else right--
+
     }
 
   }
-  return leastDiff;
+  return target -leastDiff ;
 };
+
 /*Solution#
 This problem follows the Two Pointers pattern and is quite similar to Triplet Sum to Zero.
 
@@ -80,11 +83,7 @@ console.log(triplet_sum_close_to_target([-3, -1, 1, 2], 1));
 console.log(triplet_sum_close_to_target([1, 0, 1, 1], 100));
 /*
 Time complexity#
-Sorting the array will take O(N* logN)
-O(N∗logN)
-. Overall, the function will take O(N * logN + N^2) which is asymptotically equivalent to O(N^2)
+Sorting the array will take O(N* logN). Overall, the function will take O(N * logN + N^2) which is asymptotically equivalent to O(N^2)
 
 Space complexity#
-The above algorithm’s space complexity will be O(N)
-O(N)
-, which is required for sorting. */
+The above algorithm’s space complexity will be O(N), which is required for sorting. */
