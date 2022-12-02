@@ -15,66 +15,70 @@ k=3
 Try it yourself
 Try solving this question here:*/
 class Node {
-  constructor(value, next=null){
+  constructor(value, next = null) {
     this.value = value;
     this.next = next;
   }
 
   get_list() {
-    result = "";
+    result = '';
     temp = this;
     while (temp !== null) {
-      result += temp.value + " ";
+      result += temp.value + ' ';
       temp = temp.next;
     }
     return result;
   }
-};
+}
 
-
-
-const reverse_every_k_elements = function(head, k) {
+const reverse_every_k_elements = function (head, k) {
   // TODO: Write your code here
   if (k <= 1 || head === null) {
     return head;
   }
-  let current = head, prev = null;
-  while(true) {
+  let current = head,
+    prev = null;
+  while (true) {
     const lastNodeFirstPart = prev;
     const lastNodeSubList = current;
-      let i =0,next = null;
-    while(current && i < k) {
+    let i = 0,
+      next = null;
+    while (current && i < k) {
       next = current.next;
       current.next = prev;
       prev = current;
       current = next;
-      i++
+      i++;
     }
-    if(lastNodeFirstPart) lastNodeFirstPart.next = prev;
+    if (lastNodeFirstPart) lastNodeFirstPart.next = prev;
     else head = prev;
 
     lastNodeSubList.next = current;
-    if(current === null) {
+    if (current === null) {
       break;
     }
-    prev = lastNodeSubList
+    prev = lastNodeSubList;
   }
 
   return head;
-}
+};
 
+const head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+head.next.next.next.next.next = new Node(6);
+head.next.next.next.next.next.next = new Node(7);
+head.next.next.next.next.next.next.next = new Node(8);
 
-const head = new Node(1)
-head.next = new Node(2)
-head.next.next = new Node(3)
-head.next.next.next = new Node(4)
-head.next.next.next.next = new Node(5)
-head.next.next.next.next.next = new Node(6)
-head.next.next.next.next.next.next = new Node(7)
-head.next.next.next.next.next.next.next = new Node(8)
-
-console.log(`Nodes of original LinkedList are: ${head.get_list()}`)
-console.log(`Nodes of reversed LinkedList are: ${reverse_every_k_elements(head, 3).get_list()}`)
+console.log(`Nodes of original LinkedList are: ${head.get_list()}`);
+console.log(
+  `Nodes of reversed LinkedList are: ${reverse_every_k_elements(
+    head,
+    3
+  ).get_list()}`
+);
 
 /* Solution
 The problem follows the In-place Reversal of a LinkedList pattern and is quite similar to Reverse a Sub-list. The only difference is that we have to reverse all the sub-lists. We can use the same approach, starting with the first sub-list (i.e. p=1, q=k) and keep reversing all the sublists of size ‘k’.
@@ -97,7 +101,6 @@ class Node {
   }
 }
 
-
 function reverse_every_k_elements(head, k) {
   if (k <= 1 || head === null) {
     return head;
@@ -111,7 +114,8 @@ function reverse_every_k_elements(head, k) {
     const last_node_of_sub_list = current;
     let next = null; // will be used to temporarily store the next node
     let i = 0;
-    while (current !== null && i < k) { // reverse 'k' nodes
+    while (current !== null && i < k) {
+      // reverse 'k' nodes
       next = current.next;
       current.next = previous;
       previous = current;
@@ -135,7 +139,6 @@ function reverse_every_k_elements(head, k) {
   }
   return head;
 }
-
 
 const head = new Node(1);
 head.next = new Node(2);
