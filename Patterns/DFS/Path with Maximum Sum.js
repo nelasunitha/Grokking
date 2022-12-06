@@ -15,7 +15,6 @@ class TreeNode {
     this.right = null;
   }
 }
-
 const find_maximum_path_sum = function (root) {
   // TODO: Write your code here
   globalMaxSum = -Infinity;
