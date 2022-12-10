@@ -20,41 +20,40 @@ Try solving this question here:*/
 const Heap = require('./collections/heap');
 
 class MedianOfAStream {
-  constructor(){
-    this.maxHeap = Heap([], null, ((a,b)=>a-b));
-    this.minHeap = Heap([], null, ((a,b)=>b-a));
+  constructor() {
+    this.maxHeap = Heap([], null, (a, b) => a - b);
+    this.minHeap = Heap([], null, (a, b) => b - a);
   }
 
   insert_num(num) {
-   // TODO: Write your code here
-   if(this.maxHeap.length === 0 || this.maxHeap.peek() >= num) this.maxHeap.push(num);
-   else this.minHeap.push(num);
+    // TODO: Write your code here
+    if (this.maxHeap.length === 0 || this.maxHeap.peek() >= num)
+      this.maxHeap.push(num);
+    else this.minHeap.push(num);
 
-   if(this.maxHeap.length > this.minHeap.length +1 ) {
-     this.minHeap.push(this.maxHeap.pop())
-   } else if(this.maxHeap.length < this.minHeap.length){
-     this.maxHeap.push(this.minHeap.pop())
-   }
+    if (this.maxHeap.length > this.minHeap.length + 1) {
+      this.minHeap.push(this.maxHeap.pop());
+    } else if (this.maxHeap.length < this.minHeap.length) {
+      this.maxHeap.push(this.minHeap.pop());
+    }
   }
 
   find_median(self) {
     // TODO: Write your code here
-    if(this.maxHeap.length === this.minHeap.length)
-      return this.maxHeap.peek()/2 +this.minHeap.peek()/2;
+    if (this.maxHeap.length === this.minHeap.length)
+      return this.maxHeap.peek() / 2 + this.minHeap.peek() / 2;
     else return this.maxHeap.peek();
   }
-};
+}
 
-
-
-var medianOfAStream = new MedianOfAStream()
-medianOfAStream.insert_num(3)
-medianOfAStream.insert_num(1)
-console.log(`The median is: ${medianOfAStream.find_median()}`)
-medianOfAStream.insert_num(5)
-console.log(`The median is: ${medianOfAStream.find_median()}`)
-medianOfAStream.insert_num(4)
-console.log(`The median is: ${medianOfAStream.find_median()}`)
+var medianOfAStream = new MedianOfAStream();
+medianOfAStream.insert_num(3);
+medianOfAStream.insert_num(1);
+console.log(`The median is: ${medianOfAStream.find_median()}`);
+medianOfAStream.insert_num(5);
+console.log(`The median is: ${medianOfAStream.find_median()}`);
+medianOfAStream.insert_num(4);
+console.log(`The median is: ${medianOfAStream.find_median()}`);
 /* Solution
 As we know, the median is the middle value in an ordered integer list. So a brute force solution could be to maintain a sorted list of all numbers inserted in the class so that we can efficiently return the median whenever required. Inserting a number in a sorted list will take O(N)
 O(N)
@@ -151,11 +150,10 @@ Code
 Here is what our algorithm will look like:*/
 const Heap = require('./collections/heap'); //http://www.collectionsjs.com
 
-
 class MedianOfAStream {
   constructor() {
-    this.maxHeap = new Heap([], null, ((a, b) => a - b)); // containing first half of numbers
-    this.minHeap = new Heap([], null, ((a, b) => b - a)); // containing second half of numbers
+    this.maxHeap = new Heap([], null, (a, b) => a - b); // containing first half of numbers
+    this.minHeap = new Heap([], null, (a, b) => b - a); // containing second half of numbers
   }
 
   insert_num(num) {
@@ -172,22 +170,20 @@ class MedianOfAStream {
     } else if (this.maxHeap.length < this.minHeap.length) {
       this.maxHeap.push(this.minHeap.pop());
     }
-      console.log(this.minHeap.content,this.maxHeap.content)
+    console.log(this.minHeap.content, this.maxHeap.content);
   }
-
 
   find_median() {
     if (this.maxHeap.length === this.minHeap.length) {
       // we have even number of elements, take the average of middle two elements
       // console.log(this.maxHeap.peek())
-      return (this.maxHeap.peek() + this.minHeap.peek() )/ 2.0;
+      return (this.maxHeap.peek() + this.minHeap.peek()) / 2.0;
     }
 
     // because max-heap will have one more element than the min-heap
     return this.maxHeap.peek();
   }
 }
-
 
 const medianOfAStream = new MedianOfAStream();
 medianOfAStream.insert_num(3);
