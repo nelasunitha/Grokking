@@ -7,8 +7,6 @@ You may assume that the input string is always valid; there are no extra white s
 
 The test cases are generated so that the length of the output will never exceed 105.
 
-
-
 Example 1:
 
 Input: s = "3[a]2[bc]"
