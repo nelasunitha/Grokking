@@ -1,8 +1,5 @@
 /*
 11. Sparse Matrix Multiplication
-Medium
-933
-328
 company
 Bloomberg
 company
