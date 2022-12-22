@@ -44,7 +44,6 @@ var asteroidCollision = function(asteroids) {
           stack.pop()
           continue
         }
-
         if (Math.abs(asteroid) < stack[stack.length - 1]) {
             continue
         }
