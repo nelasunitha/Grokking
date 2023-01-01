@@ -373,7 +373,6 @@ let solveKnapsack = function (profits, weights, capacity) {
       dp[c] = Math.max(profit1, profit2);
     }
   }
-
   // maximum profit will be at the bottom-right corner.
   return dp[capacity];
 };
