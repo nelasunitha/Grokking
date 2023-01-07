@@ -99,7 +99,6 @@ Once again, we can use memoization to overcome the overlapping sub-problems.
 We will be using a two-dimensional array to store the results of solved sub-problems. As mentioned above, we need to store results for every sub-array and for every possible capacity. Here is the code:*/
 let solveKnapsack = function (profits, weights, capacity) {
   const dp = [];
-
   function knapsackRecursive(profits, weights, capacity, currentIndex) {
     // base checks
     if (
